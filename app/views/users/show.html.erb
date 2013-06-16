@@ -1,0 +1,10 @@
+<h1>Users#show</h1>
+	<% @user.brews.each do |brew| %>
+		<fieldset>
+
+			<h1><%= brew.name %></h1>
+	  	<p><%= brew.story %></p>
+				<%= link_to "Show", brew %>
+			
+		</fieldset>
+<% end %>

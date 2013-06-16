@@ -1,0 +1,41 @@
+<div>
+<%= nested_form_for @brew do |f| %>
+	<div class="span6">
+		<p><%= f.label :name, "Beer Name" %> <br />
+			<%= f.text_field :name %><br />
+			<%= f.label :story, "Brew Story" %><br />
+			<%= f.text_area :story %><br />
+			<%= f.label :walkthrough, "Recipe Walkthrough" %><br />
+			<%= f.text_area :walkthrough %><br />
+		</p>
+	</div>
+
+			<div class= "span4">
+				<p>Fermentables</p>	
+						<%= f.fields_for :fermentables do |fermentables| %>		
+						<%= fermentables.text_field :name %>
+						<%= fermentables.link_to_remove "Remove -" %>
+					<% end %>
+				<p><%= f.link_to_add "Add +", :fermentables %></p>
+				<p>Hops</p>	
+					<%= f.fields_for :hops do |hops| %>
+						<%= hops.text_field :name%>
+						<%= hops.link_to_remove "Remove -" %>
+					<% end %>
+				<p><%= f.link_to_add "Add +", :hops %></p>
+
+
+					<%= f.fields_for :yeasts do |yeasts| %>
+						<%= render 'yeasts', f: yeasts %>
+					<% end %>
+				
+
+					<%= f.fields_for :extras do |extras| %>
+						<%= render 'extras', f: extras %>
+					<% end %>
+			</div>
+	<div class="span1">
+		<p> <%= f.submit %> </p>
+		<% end %>
+	</div>
+</div>
